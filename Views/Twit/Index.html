@@ -1,0 +1,11 @@
+<table>
+    <thead>
+    <tr><th>date</th><th>text</th></tr>
+    </thead>
+    <tbody data-bind="foreach: list">
+    <tr data-bind="with: item">
+        <td data-bind="text: created_at"></td>
+        <td data-bind="text: text"></td>
+    </tr>
+    </tbody>
+</table>
