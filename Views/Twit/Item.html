@@ -1,0 +1,12 @@
+<div data-bind="with:item">
+    <div data-bind="style : { backgroundImage: 'url(' + user.profile_background_image_url +')' }">
+        <div data-bind="with: user">
+           <h2><img data-bind="attr : { src : profile_image_url }"/><span data-bind="text: name"></span></h2><small data-bind="text: description"></small>
+        </div>
+        <div>
+           <h2>At <span data-bind="text: created_at"></span> said</h2>
+           <blockquote data-bind="text: text">
+           </blockquote>
+        </div>
+    </div>
+</div>

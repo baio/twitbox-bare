@@ -13,6 +13,22 @@
         return TwitController.__super__.constructor.apply(this, arguments);
       }
 
+      /*
+          item : (id, onDone) ->
+            if @viewModel
+              #in the case we are here from index (this case all necessary data already loaded)
+              @viewModel = @viewModel.active()
+              @view @defaultItemBody, @defaultItemLayout
+            else
+              #but we culd come here by a link
+              super id, onDone
+      */
+
+
+      TwitController.prototype.getId = function(item) {
+        return "" + item.id_str;
+      };
+
       return TwitController;
 
     })(controllerBase.ControllerBase);

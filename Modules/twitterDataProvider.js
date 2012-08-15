@@ -10,9 +10,16 @@
       TwitterDataProvider.prototype.load = function(srcName, filter, callback) {
         switch (srcName) {
           case "Twit":
-            return $.getJSON("https://api.twitter.com/1/statuses/user_timeline.json?screen_name=baio1980&count=" + filter.$itemsPerPage + "&include_rts=1&page=" + filter.$page + "&callback=?", function(data) {
-              return callback((!data ? "error" : null), data);
-            });
+            if (filter.$expand === "$index") {
+              return $.getJSON("https://api.twitter.com/1/statuses/user_timeline.json?screen_name=baio1980&count=" + filter.$itemsPerPage + "&include_rts=1&page=" + filter.$page + "&trim_user=1&callback=?", function(data) {
+                return callback((!data ? "error" : null), data);
+              });
+            } else {
+              return $.getJSON("https://api.twitter.com/1/statuses/show.json?id=" + filter.$filter.id.$eq + "&include_entities=true&callback=?", function(data) {
+                return callback((!data ? "error" : null), [data]);
+              });
+            }
+            break;
           default:
             return callback(null, []);
         }
