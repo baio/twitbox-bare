@@ -10,7 +10,7 @@
       TwitterDataProvider.prototype.load = function(srcName, filter, callback) {
         switch (srcName) {
           case "Twit":
-            return $.getJSON("https://api.twitter.com/1/statuses/user_timeline.json?screen_name=baio1980&count=100&include_rts=1&callback=?", function(data) {
+            return $.getJSON("https://api.twitter.com/1/statuses/user_timeline.json?screen_name=baio1980&count=" + filter.$itemsPerPage + "&include_rts=1&page=" + filter.$page + "&callback=?", function(data) {
               return callback((!data ? "error" : null), data);
             });
           default:
